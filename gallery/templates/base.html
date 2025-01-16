@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Site{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header>
+        <h1 class="bg-blue-600">Welcome to My Site</h1>
+        
+    </header>
+    <main>
+        {% block content %}
+        
+
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 My Site</p>
+    </footer>
+</body>
+</html>

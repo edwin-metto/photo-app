@@ -1,0 +1,22 @@
+<h1>Photo Collection</h1>
+<div>
+    <form method="get">
+        <label for="tag">Filter by tag:</label>
+        <select name="tag" id="tag">
+            <option value="">All</option>
+            {% for tag in tags %}
+                <option value="{{ tag.name }}">{{ tag.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+</div>
+<div>
+    {% for photo in photos %}
+        <div>
+            <img src="{{ photo.image.url }}" alt="{{ image1.jpg }}" style="width:200px;height:200px;">
+            <h3>{{ photo.name }}</h3>
+            <a href="{% url 'photo_detail' photo.id %}">View Details</a>
+        </div>
+    {% endfor %}
+</div>

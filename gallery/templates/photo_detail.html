@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ photo.name }}</title>
+</head>
+<body>
+    <h1>{{ photo.name }}</h1>
+    <img src="{{ photo.image.url }}" alt="{{ photo.name }}" style="max-width: 500px;">
+    <p>{{ photo.description }}</p>
+    <form method="post" action="{% url 'like_photo' photo.id %}">
+        {% csrf_token %}
+        <button type="submit">{{ 'Unlike' if liked else 'Like' }}</button>
+    </form>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
