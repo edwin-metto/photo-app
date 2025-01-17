@@ -4,23 +4,28 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import Photo
 
+image_urls = [
+    "https://i.pinimg.com/736x/16/2e/50/162e500f6707f0fcfe64c1cd1ced1405.jpg"
+    
+    
+]
 
-# Registration view
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Automatically log in the user after registration
-            return redirect('home')  # Redirect to the home page
+            login(request, user)  
+            return redirect('home')  
     else:
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
-# Home page to display photos
+
 def home(request):
-    photos = Photo.objects.all()
-    return render(request, 'gallery/home.html', {'photos': photos})
+    # photos = Photo.objects.all()
+
+    return render(request, 'gallery/home.html', {'photos': image_urls})
 
 
 
