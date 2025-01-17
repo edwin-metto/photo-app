@@ -1,14 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from django.contrib.auth import logout
 from .models import Photo
 
-image_urls = [
-    "https://i.pinimg.com/736x/16/2e/50/162e500f6707f0fcfe64c1cd1ced1405.jpg"
-    
-    
-]
 
 def register(request):
     if request.method == "POST":
@@ -22,10 +19,21 @@ def register(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
+@login_required
 def home(request):
-    # photos = Photo.objects.all()
+    photos = Photo.objects.all()
+    return render(request, 'gallery/home.html', {'photos': photos})
 
-    return render(request, 'gallery/home.html', {'photos': image_urls})
+
+
+def custom_logout(request):
+    logout(request)
+    return redirect('home')  # Replace 'home' with your homepage URL name
+
+
+
+
+
 
 
 
